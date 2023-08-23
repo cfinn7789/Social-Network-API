@@ -1,11 +1,10 @@
-// Username, email, thoughts, friends
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 // Schema to create user model
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: { type: String, required: true },
     email: {
-        type: string, 
+        type: String,
         required: true,
         unique: true, 
         match: 
