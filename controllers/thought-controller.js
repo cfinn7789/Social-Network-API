@@ -31,7 +31,7 @@ exports.getAllThoughts = async (req, res) => {
     try {
       const thought = await Thought.findById(req.params.thoughtId);
       if (!thought) {
-        return res.status(404).json({ error: 'Thought not found' });
+        return res.status(404).json({ error: 'Thought ID not found' });
       }
       res.status(200).json(thought);
     } catch (error) {
@@ -48,7 +48,7 @@ exports.getAllThoughts = async (req, res) => {
         { new: true }
       );
       if (!thought) {
-        return res.status(404).json({ error: 'Thought not found' });
+        return res.status(404).json({ error: 'Thought not found for update' });
       }
       res.status(200).json(thought);
     } catch (error) {
@@ -73,7 +73,7 @@ exports.getAllThoughts = async (req, res) => {
       const { thoughtId, reactionText, userId } = req.body;
       const thought = await Thought.findById(thoughtId);
       if (!thought) {
-        return res.status(404).json({ error: 'Thought not found' });
+        return res.status(404).json({ error: 'Could not find find thought' });
       }
       thought.reactions.push({
         reactionText,
