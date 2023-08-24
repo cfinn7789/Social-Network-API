@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 exports.createUser = async (req, res) => {
     try {
-      const { username, email, password } = req.body;
+      const { username, email } = req.body;
       // Create a new User document
       const user = new User({
         username,
@@ -42,10 +42,9 @@ exports.createUser = async (req, res) => {
   // Update a User by ID
   exports.updateUser = async (req, res) => {
     try {
-      const { username, email } = req.body;
-      const user = await User.findByIdAndUpdate(
-        req.params.id,
-        { username, email },
+      const { username } = req.body;
+      const user = await User.findByIdAndUpdate(req.params.userId, req.body,
+        { username },
         { new: true }
       );
       if (!user) {
@@ -60,7 +59,7 @@ exports.createUser = async (req, res) => {
   // Delete a User by ID
   exports.deleteUser = async (req, res) => {
     try {
-      const user = await User.findByIdAndDelete(req.params.id);
+      const user = await User.findByIdAndDelete(req.params.userId);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -73,7 +72,7 @@ exports.createUser = async (req, res) => {
   exports.addFriend = async (req, res) => {
     try {
       const { friendId } = req.body;
-      const userId = req.params.id; // User ID to add a friend to
+      const userId = req.params.userId; // User ID to add a friend to
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
@@ -99,7 +98,7 @@ exports.createUser = async (req, res) => {
   exports.deleteFriend = async (req, res) => {
     try {
       const { friendId } = req.body;
-      const userId = req.params.id; // User ID to remove a friend from
+      const userId = req.params.userId; // User ID to remove a friend from
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
