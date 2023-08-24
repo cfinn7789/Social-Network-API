@@ -3,6 +3,10 @@
   ## Description
   A social network API for storing users, thoughts, and reactions.
 
+  ## Demonstration (Click image to view example video)
+
+  [![Watch the video](./example-image.png)](https://drive.google.com/file/d/1cX47nTTkGUx1SDlPGfoGAOO33t9-NmSq/view)
+
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
