@@ -23,6 +23,10 @@ const reactionSchema = new Schema({
 
 // Schema for what makes up a thought
 const thoughtSchema = new Schema({
+  thoughtId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId()
+  },
   thoughtText: {
     type: String,
     required: true,

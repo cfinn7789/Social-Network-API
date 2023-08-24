@@ -70,13 +70,13 @@ exports.getAllThoughts = async (req, res) => {
 
   exports.createReaction = async (req, res) => {
     try {
-      const { thoughtId, reactionText, userId } = req.body;
+      const { thoughtId, reactionBody, userId } = req.body;
       const thought = await Thought.findById(thoughtId);
       if (!thought) {
         return res.status(404).json({ error: 'Could not find find thought' });
       }
       thought.reactions.push({
-        reactionText,
+        reactionBody,
         user: userId,
         username,
       });
